@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Podcast-Projekt</title>
+
+<style>
+:root {
+    --main-color: rgba(12, 5, 78, 0.6);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: rgba(253, 81, 225, 0.8);
+    background-color: rgb(11, 4, 70);
+}
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    width: calc(100% - 200px);
+    text-align: center;
+    font-size: 50px;
+    color: royalblue;
+    padding: 20px 0;
+    z-index: 10;
+}
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.sidenav a {
+    width: 100%;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    background: rgb(33, 20, 219);
+}
+
+.content {
+    margin-left: 200px;
+    margin-top: 120px;
+    padding: 40px;
+}
+
+
+.page {
+    display: none;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: 0.4s;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.box {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: rgb(56, 47, 79);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(65, 4, 116, 0.6);
+}
+
+
+.player button {
+    background: rgb(33, 20, 219);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 15px 0;
+    transition: 0.2s;
+}
+
+.player button:hover {
+    transform: scale(1.1);
+}
+
+
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background: #216068;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: var(--main-color);
+    border-radius: 5px;
+}
+
+.progress::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 14px;
+    height: 14px;
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+
+.time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.logo {
+    width: 120px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Mehr als schwarz-weiß gedacht - Podcast-Projekt von Lena, Enna & Joleen
+</div>
+
+<div class="sidenav">
+    <img src="Downloads/podcast site 1.png" class="sidebar-logo">
+
+    <a onclick="showPage('home')">Start</a>
+    <a onclick="showPage('about')">Über uns</a>
+    <a onclick="showPage('quellen')">Quellen</a>
+</div>
+
+<div class="content">
+
+<div id="home" class="page active">
+    <div class="box">
+
+        <img src="Bilder/IMG-20260320-WA0071(1).jpg" class="logo">
+
+        <h2>Mehr als Schwarz-weiß gedacht</h2>
+        <p>Die Welt ist kompliziert – aber was, wenn dir jemand sagt: „Eigentlich ist alles ganz einfach“? 
+            Jemand sagt dir, es gibt genau die eine Lösung und genau diesen Feind, der für die Probleme verantwortlich ist. 
+            Aber stimmt das wirklich? Ist es wirklich ganz einfach?
+             Genau das schauen wir uns in unserem Podcast an. 
+             Wir reden darüber, warum solche Aussagen so verlockend sind, wie man da reinrutschen kann und warum man manchmal besser zweimal hinschauen sollte.
+            </p>
+
+        <div class="player">
+            <button id="playBtn" onclick="togglePlay()">▶</button>
+
+            <div class="progress-container" onclick="setProgress(event)">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="time">
+                <span id="current">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+
+            
+            <audio id="audio" src="Musik/podcast finale fassung.mp3"></audio>
+        </div>
+
+    </div>
+</div>
+
+<div id="about" class="page">
+    <h2>Über das Projekt</h2>
+    <p>Dieser Podcast ist ein Schulprojekt über Rechtsextremismus. </p> 
+    <p>Anmerkung: Joleens Mikrophone hatte ein Problem, weshalb ihre Stimme, auch nach dem Schnitt noch etwas verrauscht und dumpf klingt. 
+        Es ist leider nicht möglich gewesen mehr Rauschen zu entfernen, ohne die gesprochenen Worte unverständlich werden zu lassen.</p>
+    <p>Technische Gestaltung(Audiobearbeitung und Seite): Joleen </p>
+    <p>Skript: Lena, Joleen, Enna </p>
+    <p>Logodesign: Lena</p>
+
+</div>
+
+<div id="quellen" class="page">
+    <h2>Quellen</h2>
+    <p>Podcast: Braune Kinderzimmer - undercover bei jungen Nazis (Stern investigativ) </p>
+     <p> Mirko Drotschmann (Mrwissen2go)   </p>
+     <p> Bild oben rechts: Pixabay Stockfoto </p>
+     <p> Bild auf dem Logo: Stockfoto (von einer nicht mehr bekannten Seite) </p>
+     <p> Toneffekte: Pixabay</p>
+</div>
+
+</div>
+
+<script>
+const audio = document.getElementById("audio");
+const progress = document.getElementById("progress");
+const current = document.getElementById("current");
+const duration = document.getElementById("duration");
+const playBtn = document.getElementById("playBtn");
+
+function togglePlay() {
+    if (!audio.src) {
+        alert("Keine Audio-Datei ausgewählt!");
+        return;
+    }
+    if (audio.paused) {
+        audio.play();
+        playBtn.textContent = "⏸";
+    } else {
+        audio.pause();
+        playBtn.textContent = "▶";
+    }
+}
+
+// Zeitanzeige aktualisieren, wenn Metadata geladen ist
+audio.addEventListener("loadedmetadata", () => {
+    duration.textContent = formatTime(audio.duration);
+});
+
+// Fortschritt und aktuelle Zeit
+audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = percent + "%";
+    }
+    current.textContent = formatTime(audio.currentTime);
+});
+
+// Klick auf Fortschrittsbalken
+function setProgress(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    audio.currentTime = (clickX / width) * audio.duration;
+}
+
+// Zeit formatieren
+function formatTime(time) {
+    if (!time) return "0:00";
+    const m = Math.floor(time / 60);
+    let s = Math.floor(time % 60);
+    if (s < 10) s = "0" + s;
+    return m + ":" + s;
+}
+
+// Seiten wechseln
+function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
